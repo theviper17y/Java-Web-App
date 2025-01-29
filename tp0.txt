@@ -1,0 +1,87 @@
+# Installing Apache NetBeans and Creating a Hello World Java Application
+
+## Overview
+
+This guide provides step-by-step instructions for installing the latest version of Apache NetBeans and creating a simple 'Hello World' Java application using an Ant project.
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+- A computer running Windows, macOS, or Linux.
+- Java Development Kit (JDK) 8 or higher installed on your machine. You can download it from the [Oracle JDK website](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) or [OpenJDK](https://openjdk.java.net/).
+
+## Step 1: Download Apache NetBeans
+
+1. **Visit the Apache NetBeans Website**:
+   Go to the official Apache NetBeans download page: [Apache NetBeans Downloads](https://netbeans.apache.org/download/index.html).
+
+2. **Select the Latest Version**:
+   Click on the latest version of Apache NetBeans (e.g., Apache NetBeans 12.5 or later).
+
+3. **Choose Your Installer**:
+   - For Windows, download the '.exe' installer.
+   - For macOS, download the '.dmg' file.
+   - For Linux, download the '.sh' file or the '.zip' file.
+
+## Step 2: Install Apache NetBeans
+
+### Windows
+
+1. **Run the Installer**:
+   Double-click the downloaded '.exe' file to start the installation.
+
+2. **Follow the Installation Wizard**:
+   - Click 'Next' to proceed.
+   - Accept the license agreement and click 'Next'.
+   - Choose the installation folder and click 'Next'.
+   - Select the components you want to install (default options are usually sufficient) and click 'Next'.
+   - Click 'Install' to begin the installation.
+
+3. **Complete the Installation**:
+   Once the installation is complete, click 'Finish' to exit the installer.
+
+
+4. **Follow the Installation Wizard**:
+Follow the prompts to complete the installation.
+
+## Step 3: Create a Hello World Java Application
+
+1. **Launch Apache NetBeans**:
+Open Apache NetBeans from your applications menu.
+
+2. **Create a New Project**:
+- Click on 'File' > 'New Project...'.
+- In the New Project dialog, select 'Java with Ant' under Categories.
+- Select 'Java Application' under Projects and click 'Next'.
+
+3. **Set Project Name and Location**:
+- Enter a project name (e.g., 'HelloWorld').
+- Choose a project location where you want to save the project.
+- Ensure the 'Create Main Class' checkbox is checked and set the main class name to 'helloworld.HelloWorld'.
+- Click 'Finish'.
+
+4. **Write the Hello World Code**:
+- In the Projects window, expand the 'HelloWorld' project.
+- Navigate to 'Source Packages' > 'helloworld'.
+- Open the 'HelloWorld.java' file.
+- Replace the existing code with the following:
+
+```java
+package helloworld;
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+```
+
+5. **Build  the Project:**
+
+- Right-click on the project name again.
+- Select 'Run' from the context menu. You should see the output in the Output window:
+  ```Hello, World!```
+
+## Conclusion
+You have successfully installed Apache NetBeans and created a simple 'Hello World' Java application using an Ant project. You can now explore more features of NetBeans and start developing more complex Java applications.

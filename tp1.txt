@@ -1,0 +1,132 @@
+# Creating Your First Web Application Using Gradle in Apache NetBeans
+
+## Overview
+
+This guide provides step-by-step instructions for creating a simple web application using Gradle in Apache NetBeans. Gradle is a powerful build automation tool that is widely used for Java projects.
+
+## Prerequisites
+
+Before you begin, ensure you have the following:
+
+- A computer running Windows, macOS, or Linux.
+- Java Development Kit (JDK) 8 or higher installed on your machine. You can download it from the [Oracle JDK website](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html) or [OpenJDK](https://openjdk.java.net/).
+- Apache NetBeans installed. You can download it from the [Apache NetBeans Downloads](https://netbeans.apache.org/download/index.html).
+
+## Step 1: Create a New Gradle Project
+
+1. **Launch Apache NetBeans**:
+   Open Apache NetBeans from your applications menu.
+
+2. **Create a New Project**:
+   - Click on 'File' > 'New Project...'.
+   - In the New Project dialog, select 'Java with Gradle' under Categories.
+   - Select 'Java Application' under Projects and click 'Next'.
+
+3. **Set Project Name and Location**:
+   - Enter a project name (e.g., 'MyWebApp').
+   - Choose a project location where you want to save the project.
+   - Ensure the 'Create Main Class' checkbox is checked and set the main class name to 'mywebapp.Main'.
+   - Click 'Finish'.
+
+## Step 2: Configure the Project for Web Development
+
+1. **Add Web Dependencies**:
+   Open the `build.gradle` file located in the root of your project. Add the following dependencies for a simple web application:
+
+   ```groovy
+   plugins {
+       id 'java'
+       id 'war' // Add this line to apply the WAR plugin
+   }
+
+   repositories {
+       mavenCentral()
+   }
+
+   dependencies {
+       implementation 'javax.servlet:javax.servlet-api:4.0.1' // Servlet API
+       implementation 'org.apache.tomcat.embed:tomcat-embed-core:9.0.41' // Tomcat Embed
+       implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.41' // Tomcat JSP support
+       implementation 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.3' // JSP API
+       implementation 'javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2' // JSTL API
+   }
+   ```
+2. **Create the Main Class:**
+   Create Main.java file in src/main/java/mywebapp and add the following code to start an embedded Tomcat server:
+
+       ```
+       package mywebapp;
+    
+        import org.apache.catalina.LifecycleException;
+        import org.apache.catalina.startup.Tomcat;
+        
+        import java.io.File;
+    
+        public class Main {
+            public static void main(String[] args) throws LifecycleException {
+                Tomcat tomcat = new Tomcat();
+                tomcat.setPort(8080);
+                tomcat.getConnector(); // Trigger the creation of the default connector
+    
+            // Define the web application context
+            tomcat.addWebapp("", new File("src/main/webapp").getAbsolutePath());
+    
+            // Start the server
+            tomcat.start();
+            tomcat.getServer().await();
+        }
+        }
+     ```
+
+3. **Create the web.xml File:**
+   In the WEB-INF directory, create a file named web.xml and add the following content:
+
+   ```
+   <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <servlet>
+        <servlet-name>MyServlet</servlet-name>
+        <servlet-class>mywebapp.Main</servlet-class>
+    </servlet>
+       <servlet-mapping>
+           <servlet-name>MyServlet</servlet-name>
+           <url-pattern>/</url-pattern>
+       </servlet-mapping>
+   </web-app>
+   ```
+
+4. **Create the index.jsp File:**
+   In the webapp directory, create a file named index.jsp and add the following content:
+
+   ```
+     <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+    <html>
+    <head>
+        <title>Hello World</title>
+    </head>
+    <body>
+        <h1>Hello, World!</h1>
+        <p>Welcome to my first web application using Gradle!</p>
+    </body>
+    </html>
+   ```
+
+## Step 3: Build and Run the Application
+
+1. **Build the Project**:
+   - Right-click on the project name (`MyWebApp`) in the Projects window.
+   - Select `Build` from the context menu. This action compiles your code and packages it into a WAR (Web Application Archive) file, which is necessary for deployment.
+
+2. **Run the Project**:
+   - Right-click on the project name again.
+   - Select `Run` from the context menu. This will start the embedded Tomcat server and deploy your web application.
+
+3. **Access the Application**:
+   - Open your web browser and navigate to `http://localhost:8080`. You should see the "Hello, World!" message displayed on the page, confirming that your web application is running successfully.
+
+## Conclusion
+
+Congratulations! You have successfully created your first web application using Gradle in Apache NetBeans. This guide walked you through the process of setting up a Gradle project, configuring it for web development, and running an embedded Tomcat server. You now have a foundational understanding of how to build web applications with Gradle, and you can expand upon this knowledge by adding more features, such as servlets, JSPs, and additional libraries. Explore the capabilities of Gradle and continue developing your web applications!
